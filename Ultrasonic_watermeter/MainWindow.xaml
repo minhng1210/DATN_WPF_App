@@ -1,0 +1,119 @@
+﻿<Window x:Class="Ultrasonic_watermeter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Đồng hồ nước siêu âm" Height="500" Width="900"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid Background="{DynamicResource MaterialDesignPaper}">
+        <!-- Chia 2 cột: Cài đặt + Tab -->
+        <Grid.ColumnDefinitions>
+            <!-- Cài đặt -->
+            <ColumnDefinition Width="180"/>
+            <!-- Tab -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ================= Cài đặt ================= -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <materialDesign:Card Grid.Column="0"
+                                 Background="{DynamicResource MaterialDesignCardBackground}"
+                                 Margin="10,10,5,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="Cài đặt"
+                               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                               Margin="20,20,20,20"
+                               HorizontalAlignment="Left"/>
+                    <StackPanel x:Name="panelSerialConfig"
+                                Grid.Row="1">
+                        <TextBlock Text="Port:"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               VerticalAlignment="Center" 
+                               Margin="20,0,20,10"/>
+                        <ComboBox x:Name="cmbPort"
+                              materialDesign:HintAssist.Hint="Chọn cổng COM"
+                              Margin="20,0,20,10">
+                        </ComboBox>
+                        <TextBlock Text="Baud rate:"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               VerticalAlignment="Center" 
+                               Margin="20,0,20,10"/>
+                        <ComboBox x:Name="cmbBaud"
+                              materialDesign:HintAssist.Hint="Chọn Baud rate"
+                              Margin="20,0,20,10">
+                        </ComboBox>
+                        <TextBlock Text="Data Bits:"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               VerticalAlignment="Center"
+                               Margin="20,0,20,10"/>
+
+                        <ComboBox x:Name="cmbDataBits" 
+                              materialDesign:HintAssist.Hint="Chọn Data Bits"
+                              Margin="20,0,20,10">
+                        </ComboBox>
+                        <TextBlock Text="Stop Bits:"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               VerticalAlignment="Center"
+                               Margin="20,0,20,10"/>
+                        <ComboBox x:Name="cmbStopBits"
+                              materialDesign:HintAssist.Hint="Chọn Stop Bits"
+                              Margin="20,0,20,10">
+                        </ComboBox>
+                        <TextBlock Text="Parity:"
+                               Style="{StaticResource MaterialDesignBody2TextBlock}"
+                               VerticalAlignment="Center"
+                               Margin="20,0,20,10"/>
+                        <ComboBox x:Name="cmbParity"
+                              materialDesign:HintAssist.Hint="Chọn Parity"
+                              Margin="20,0,20,10">
+                        </ComboBox>
+                    </StackPanel>
+                    <Button Grid.Row="2"
+                            materialDesign:ButtonAssist.CornerRadius="5"
+                            x:Name="btnConnect"
+                            Content="Kết nối" 
+                            Margin="20,20,20,20"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Click="btnConnect_Click"/>
+                    <StackPanel Grid.Row="3"
+                                VerticalAlignment="Bottom">
+                        <TextBlock Text="Trạng thái:"
+                                   Margin="20,0,20,10"/>
+                        <TextBlock x:Name="txtSerialStatus"
+                                   Text="Chưa kết nối"
+                                   Foreground="Red"
+                                   Margin="20,0,20,15"/>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+        </ScrollViewer>
+
+        <!-- ===== Main ===== -->
+        <materialDesign:Card Grid.Column="1"
+                             Background="{DynamicResource MaterialDesignCardBackground}"
+                             Margin="5,10,10,10">
+            <TabControl x:Name="tabControl">
+                <TabItem Header="📊 Thống kê dữ liệu">
+                    <Frame Source="Page1.xaml"/>
+                </TabItem>
+
+                <TabItem Header="⚡ Giám sát dữ liệu">
+                    <Frame Source="Page2.xaml"/>
+                </TabItem>
+
+                <TabItem Header="🎛️ Cấu hình thông số">
+                    <Frame Source="Page3.xaml"/>
+                </TabItem>
+
+            </TabControl>
+        </materialDesign:Card>
+    </Grid>
+</Window>

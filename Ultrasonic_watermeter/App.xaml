@@ -1,0 +1,20 @@
+﻿<Application x:Class="Ultrasonic_watermeter.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Ultrasonic_watermeter"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- BundledTheme chứa cấu hình màu sắc và chủ đề cơ bản -->
+                <materialDesign:BundledTheme
+                    PrimaryColor="DeepPurple" 
+                    SecondaryColor="Lime"/>
+
+                <!-- File defaults chứa style cho tất cả controls WPF -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

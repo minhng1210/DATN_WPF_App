@@ -1,0 +1,1219 @@
+﻿<Page x:Class="Ultrasonic_watermeter.Page3"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:Ultrasonic_watermeter"
+      mc:Ignorable="d"
+      d:DesignHeight="1300" d:DesignWidth="1245" d:Background="White"
+      Title="Page3">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                   Text="Cấu hình thông số hệ thống"
+                   Margin="20"/>
+
+        <TabControl x:Name="tabControl"
+                    Grid.Row="1"
+                    TabStripPlacement="Left">
+            <TabItem x:Name="Tab1" 
+                     Header="⏱️ Đo thời gian truyền">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Margin="20,10,30,10">
+                    <WrapPanel>
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Loại tín hiệu vào ra"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Tín hiệu xung ra lệnh đo (TRIG):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbTrig1"
+                                              materialDesign:HintAssist.Hint="Chọn kiểu tín hiệu"
+                                              Width="120"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Tín hiệu xung bắt đầu đo (START):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbStart"
+                                              materialDesign:HintAssist.Hint="Chọn kiểu tín hiệu"
+                                              Width="120"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Tín hiệu xung kết thúc đo (STOP):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbStop"
+                                              materialDesign:HintAssist.Hint="Chọn kiểu tín hiệu"
+                                              Width="120"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Chế độ hiệu chuẩn"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số chu kỳ clock ngoài cho Calibration 2:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="250"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbCalibration2Periods"
+                                              materialDesign:HintAssist.Hint="Chọn số chu kỳ"
+                                              Width="130"
+                                              Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số lần đo lặp lại để lấy trung bình:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="250"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbAvgCycles"
+                                              materialDesign:HintAssist.Hint="Chọn số chu kỳ"
+                                              Width="130"
+                                              Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Luôn hiệu chuẩn vào cuối quá trình đo:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="345"
+                                               Margin="10,0,0,0"/>
+                                    <ToggleButton x:Name="togForceCal"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Kích hoạt bit chẵn lẻ cho các thanh ghi kết quả đo:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="345"
+                                               Margin="10,0,0,0"/>
+                                    <ToggleButton x:Name="togParity"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Tần số"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,0,0,10">
+                                    <TextBlock Text="Tần số tham chiếu:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="130"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               HorizontalAlignment="Left">
+                                        <Run Text="f" />
+                                        <Run Text="CALIB_CLK"
+                                             BaselineAlignment="Subscript"
+                                             FontSize="7"/>
+                                    </TextBlock>
+                                    <TextBlock x:Name="txtFCalibClk"
+                                               Text=" = 8,000 MHz"
+                                               Width="100"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"/>
+                                </StackPanel>
+                                <TextBlock Text="(Áp dụng cho TDC7200)"
+                                           Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                           Width="130" 
+                                           HorizontalAlignment="Left" 
+                                           Margin="10,0,0,0" 
+                                           FontStyle="Italic"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,0,0,10">
+                                    <TextBlock Grid.Column="0"
+                                               Text="1"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldFCalibClk" 
+                                            Grid.Column="1"
+                                            Minimum="1"
+                                            Maximum="16"
+                                            Value="8"
+                                            Width="210"
+                                            Margin="10"
+                                            ValueChanged="sldFCalibClk_ValueChanged"
+                                            />
+                                    <TextBlock Grid.Column="2"
+                                               Text="16"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Cài đặt đo"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chế độ đo:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="180"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbMeasModeToF"
+                                              materialDesign:HintAssist.Hint="Chọn chế độ đo"
+                                              Width="175"
+                                              Margin="10,0,0,0"
+                                              SelectionChanged="cmbMeasModeToF_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số lượng xung STOP nhận:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="180"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbNumStop"
+                                              materialDesign:HintAssist.Hint="Chọn số xung STOP nhận"
+                                              Width="175"
+                                              Margin="10,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="Khoảng thời gian nhận xung STOP:"
+                                           Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                           Width="180"
+                                           HorizontalAlignment="Left"
+                                           Margin="10,5,0,0"/>
+                                <StackPanel x:Name="spCoarseCntrOvf"
+                                            Orientation="Horizontal"
+                                            Margin="20,5,0,0">
+                                    <TextBlock Text="Giới hạn trên (bộ đếm xung nhịp nội):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="270"
+                                               HorizontalAlignment="Left"
+                                               Margin="20,10,0,0"/>
+                                    <TextBox x:Name="fillCoarseCntrOvf"
+                                             Width="60"
+                                             materialDesign:HintAssist.Hint="0 - 65535"
+                                             PreviewTextInput="TextBox_PreviewTextInput"
+                                             LostFocus="TextBox_LostFocus" 
+                                             Margin="0,8,0,0"
+                                             TextChanged="fillCoarseCntrOvf_TextChanged"/>
+                                    <TextBlock x:Name="timeCoarseCntrOvf" 
+                                               Text="x 63 x LSB = "
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="180"
+                                               HorizontalAlignment="Left"
+                                               Margin="10,10,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="(Giá trị điển hình LSB = 55 ps, thực tế sẽ hiệu chỉnh để tăng độ chính xác)"
+                                           Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                           HorizontalAlignment="Left" 
+                                           Margin="40,5,0,0" 
+                                           FontStyle="Italic"/>
+                                <StackPanel x:Name="spClockCntrOvf"
+                                            Margin="20,5,0,0">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,5,0,0">
+                                        <TextBlock Text="Giới hạn trên (bộ đếm xung nhịp ngoại):"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="270"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="20,10,0,0"/>
+                                        <TextBox x:Name="fillClockCntrOvf"
+                                                 Width="60"
+                                                 materialDesign:HintAssist.Hint="0 - 65535"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 LostFocus="TextBox_LostFocus" 
+                                                 Margin="0,8,0,0"
+                                                 TextChanged="fillClockCntrOvf_TextChanged" 
+                                                 VerticalAlignment="Top"/>
+                                        <TextBlock Text="x"
+                                                   Margin="10,10,0,0"/>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <TextBlock Text="1"
+                                                       HorizontalAlignment="Center"
+                                                       Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       Margin="10,2,10,0"/>
+                                            <Border Height="1"
+                                                    Background="Black"
+                                                    Margin="2,0"/>
+                                            <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="5,0">
+                                                <Run Text="f" />
+                                                <Run Text="CALIB_CLK"
+                                                     BaselineAlignment="Subscript"
+                                                     FontSize="7"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock x:Name="txtClockCntrOvf" 
+                                                   Text=" = "
+                                                   Margin="10,10,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="40,10,0,10">
+                                        <TextBlock Text="Phát hiện tràn bộ đếm, quá trình đo sẽ dừng ngay lập tức"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="370"
+                                                   Margin="10,0,0,0"/>
+                                        <ToggleButton x:Name="togClockOverflowInterrupt"
+                                                      Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                      Margin="15,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel x:Name="spStopMask"
+                                            Margin="20,5,0,0">
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,5,0,0">
+                                        <TextBlock Text="Giới hạn dưới (bộ đếm xung nhịp ngoại):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="270"
+                                               HorizontalAlignment="Left"
+                                               Margin="20,10,0,0"/>
+                                        <TextBox x:Name="fillStopMask"
+                                                 Width="60"
+                                                 materialDesign:HintAssist.Hint="0 - 65535"
+                                                 PreviewTextInput="TextBox_PreviewTextInput"
+                                                 LostFocus="TextBox_LostFocus" 
+                                                 Margin="0,8,0,0"
+                                                 TextChanged="fillStopMask_TextChanged" 
+                                                 VerticalAlignment="Top"/>
+                                        <TextBlock Text="x"
+                                                   Margin="10,10,0,0"/>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <TextBlock Text="1"
+                                                       HorizontalAlignment="Center"
+                                                       Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       Margin="10,2,10,0"/>
+                                            <Border Height="1"
+                                                    Background="Black"
+                                                    Margin="2,0"/>
+                                            <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="5,0">
+                                                <Run Text="f" />
+                                                <Run Text="CALIB_CLK"
+                                                     BaselineAlignment="Subscript"
+                                                     FontSize="7"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock x:Name="txtStopMask" 
+                                                   Text=" = "
+                                                   Margin="10,10,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="40,10,0,10">
+                                        <TextBlock Text="Phát hiện tràn bộ đếm, quá trình đo sẽ dừng ngay lập tức"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="370"
+                                                   Margin="10,0,0,0"/>
+                                        <ToggleButton x:Name="togCoarseOverflowInterrupt"
+                                                      Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                      Margin="15,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                    </WrapPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem x:Name="Tab2"
+                     Header="🎛️ Xử lý sóng siêu âm">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Margin="20,10,30,10">
+                    <WrapPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Tần số"
+                                        Margin="0,0,0,10"
+                                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,0,0,10"
+                                            HorizontalAlignment="Left">
+                                    <TextBlock Text="Tần số tham chiếu:"
+                                                Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                Width="130"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               HorizontalAlignment="Left">
+                                        <Run Text="f" />
+                                        <Run Text="ClkIN"
+                                                BaselineAlignment="Subscript"
+                                                FontSize="7"/>
+                                    </TextBlock>
+                                    <TextBlock x:Name="txtFClkIn"
+                                               Text=" = 8.000 MHz"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="20,0,0,10">
+                                    <TextBlock Text="(Áp dụng cho TDC1000)"
+                                               Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                               Width="130" 
+                                               HorizontalAlignment="Left" 
+                                               Margin="10,0,0,0" 
+                                               FontStyle="Italic" 
+                                               VerticalAlignment="Center"/>
+                                    <CheckBox x:Name="chkSyncFrequency" 
+                                              Margin="2,0,0,0" 
+                                              IsThreeState="False"
+                                              Checked="chkSyncFrequency_Checked">
+                                        <TextBlock Text="Đồng bộ với TDC7200"
+                                                   Style="{DynamicResource MaterialDesignOverlineTextBlock}" 
+                                                   FontStyle="Italic"/>
+                                    </CheckBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,0,0,10">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsChecked, ElementName=chkSyncFrequency}"
+                                                             Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsChecked, ElementName=chkSyncFrequency}"
+                                                             Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <TextBlock Grid.Column="0"
+                                                Text="0.06"
+                                                Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                                VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldFClkIn" 
+                                            Grid.Column="1"
+                                            Minimum="0.06"
+                                            Maximum="16"
+                                            Value="8"
+                                            Width="360"
+                                            Margin="10"
+                                            ValueChanged="sldFClkIn_ValueChanged"/>
+                                    <TextBlock Grid.Column="2"
+                                                Text="16"
+                                                Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                                VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock Margin="10,0,0,10" 
+                                           Foreground="Blue">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsChecked, ElementName=chkSyncFrequency}"
+                                                             Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsChecked, ElementName=chkSyncFrequency}"
+                                                             Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                    <Hyperlink Click="Hyperlink_Click"
+                                               Style="{DynamicResource MaterialDesignBody2Hyperlink}">
+                                        Chuyển tới cài đặt
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Bộ chia tần số cho đầu dò siêu âm: "
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               HorizontalAlignment="Left"
+                                               Width="240"
+                                               Margin="10,5,0,10"/>
+                                    <ComboBox x:Name="cmbTXFreqDiv"
+                                              materialDesign:HintAssist.Hint="Chọn bộ chia tần số"
+                                              Width="160"
+                                              Margin="20,0,0,10"
+                                              HorizontalAlignment="Left"
+                                              SelectionChanged="cmbTXFreqDiv_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="30,0,0,10">
+                                    <TextBlock Text="Tần số của sóng siêu âm:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="170"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                HorizontalAlignment="Left">
+                                        <Run Text="f" />
+                                        <Run Text="1"
+                                                BaselineAlignment="Subscript"
+                                                FontSize="7"/>
+                                    </TextBlock>
+                                    <TextBlock x:Name="txtF1"
+                                               Text=" = " 
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               Margin="5,0,0,0"
+                                               Width="100"/>
+                                    <TextBlock x:Name="txtT1"
+                                               Text="T1 = " 
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               Margin="5,0,0,0"
+                                               Width="100"/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Bộ chia tần số cho mạch đo nhiệt độ: "
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               HorizontalAlignment="Left"
+                                               Width="240"
+                                               Margin="10,5,0,10"/>
+                                    <ComboBox x:Name="cmbTempClkDiv"
+                                              materialDesign:HintAssist.Hint="Chọn bộ chia tần số"
+                                              Width="160"
+                                              Margin="20,0,0,10"
+                                              HorizontalAlignment="Left"
+                                              SelectionChanged="cmbTempClkDiv_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="30,0,0,10">
+                                    <TextBlock Text="Tần số của mạch đo nhiệt độ:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="190"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                HorizontalAlignment="Left">
+                                        <Run Text="f" />
+                                        <Run Text="PT"
+                                                BaselineAlignment="Subscript"
+                                                FontSize="7"/>
+                                    </TextBlock>
+                                    <TextBlock x:Name="txtFPT"
+                                               Text=" = " 
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               Margin="5,0,0,0"
+                                               Width="100"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Bộ chia tần số cho mạch ToF: "
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               HorizontalAlignment="Left"
+                                               Width="240"
+                                               Margin="10,5,0,10"/>
+                                    <ComboBox x:Name="cmbClockinDiv"
+                                              materialDesign:HintAssist.Hint="Chọn bộ chia tần số"
+                                              Width="160"
+                                              Margin="20,0,0,10"
+                                              HorizontalAlignment="Left"
+                                              SelectionChanged="cmbClockinDiv_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="30,0,0,10">
+                                    <TextBlock Text="Tần số của mạch đo ToF:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="170"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                HorizontalAlignment="Left">
+                                        <Run Text="f" />
+                                        <Run Text="0"
+                                                BaselineAlignment="Subscript"
+                                                FontSize="7"/>
+                                    </TextBlock>
+                                    <TextBlock x:Name="txtF0"
+                                               Text=" = " 
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               Margin="5,0,0,0"
+                                               Width="100"/>
+                                    <TextBlock x:Name="txtT0"
+                                               Text="T0 = " 
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}" 
+                                               Margin="5,0,0,0"
+                                               Width="100"/>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Thông số thu phát"
+                                    Margin="0,0,0,10"
+                                    Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Tín hiệu xung nhận lệnh đo (TRIG):"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbTrig2"
+                                              materialDesign:HintAssist.Hint="Chọn kiểu tín hiệu"
+                                              Width="130"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số lượng xung truyền:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbNumTX"
+                                              materialDesign:HintAssist.Hint="Chọn số xung truyền"
+                                              Width="130"
+                                              Margin="20,0,0,0" 
+                                              SelectionChanged="cmbNumTX_SelectionChanged"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Giảm dao động dư sau khi phát của đầu dò:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="315"
+                                               Margin="10,0,0,0"/>
+                                    <ToggleButton x:Name="togDamping"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Vị trí dịch chuyển xung TX 180°:"
+                                            Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                            Width="210"
+                                            Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbTXPHShiftPos"
+                                              materialDesign:HintAssist.Hint="Chọn vị trí"
+                                              Width="130"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chế độ nhận echo:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbReceiveMode"
+                                              materialDesign:HintAssist.Hint="Chọn chế độ nhận"
+                                              Width="130"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số lượng xung nhận:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbNumRX"
+                                              materialDesign:HintAssist.Hint="Chọn số xung nhận"
+                                              Width="130"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Số chu kỳ đo lấy trung bình:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="210"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbNumAvg"
+                                              materialDesign:HintAssist.Hint="Chọn số chu kỳ"
+                                              Width="130"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Chế độ đo"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chọn chế độ đo ToF:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="160"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbToFMeasMode"
+                                              materialDesign:HintAssist.Hint="Chọn chế độ đo ToF"
+                                              Width="230"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chọn chế độ đo nhiệt độ:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="160"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbTempMode"
+                                              materialDesign:HintAssist.Hint="Chọn chế độ đo nhiệt độ"
+                                              Width="230"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chọn loại nhiệt điện trở:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="160"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbTempRTD"
+                                              materialDesign:HintAssist.Hint="Chọn loại nhiệt điện trở"
+                                              Width="230"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Xử lý tín hiệu siêu âm"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+
+                                <TextBlock Text="Bộ khuếch đại nhiễu thấp (LNA - Low Noise Amplifier):"
+                                           HorizontalAlignment="Left"
+                                           Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                           Width="390"
+                                           Margin="10,5,0,15"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,5,0,10">
+                                    <TextBlock Text="Chế độ phản hồi:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="120"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbLnaFb"
+                                              materialDesign:HintAssist.Hint="Chọn chế độ phản hồi"
+                                              Width="140"
+                                              Margin="20,0,0,0"/>
+                                    <TextBlock Text="Bỏ qua:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="50"
+                                               Margin="40,0,0,0"/>
+                                    <ToggleButton x:Name="togLnaCtrl"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="Bộ khuếch đại khả trình (PGA - Programmable Gain Amplifier}:"
+                                           Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                           HorizontalAlignment="Left"
+                                           Width="390"
+                                           Margin="10,5,0,15"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="10,5,0,10">
+                                    <TextBlock Text="Độ khuếch đại:"
+                                                Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                Width="120"
+                                                Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbPgaGain"
+                                              materialDesign:HintAssist.Hint="Chọn độ khuếch đại:"
+                                              Width="140"
+                                              Margin="20,0,0,0"/>
+                                    <TextBlock Text="Bỏ qua:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="50"
+                                               Margin="40,0,0,0"/>
+                                    <ToggleButton x:Name="togPgaCtrl"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Ngưỡng phát hiện sóng siêu âm thu được:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="285"
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbEchoQualThld"
+                                              materialDesign:HintAssist.Hint="Chọn mức điện áp"
+                                              Width="120"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Tham số thời gian"
+                                        Margin="0,0,0,10"
+                                        Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Kiểu đo ToF:"
+                                            Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                            Width="90"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbTimeToF"
+                                              materialDesign:HintAssist.Hint="Chọn kiểu đo ToF"
+                                              Width="120"
+                                              Margin="20,0,0,0" 
+                                              SelectionChanged="cmbTimeToF_SelectionChanged"/>
+                                </StackPanel>
+                                <TextBlock Margin="20,0,20,0"/>
+                                <CheckBox x:Name="chkEnPowerBlank" 
+                                          Margin="10,0,0,0" 
+                                          IsThreeState="False"
+                                          Click="chkEnPowerBlank_Click"
+                                          VerticalAlignment="Center">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                Value="Đo ToF ngắn">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                Value="Đo ToF tiêu chuẩn">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                    <TextBlock Text="Cho phép thiết bị ở trạng thái công suất thấp trong suốt thời gian tín hiệu phát truyền đến đầu thu"
+                                                    Style="{DynamicResource MaterialDesignOverlineTextBlock}" 
+                                                    FontStyle="Italic"/>
+                                </CheckBox>
+                                <StackPanel>
+                                    <Image Source="/ShortTOFMeasurement.png"
+                                           Width="600"
+                                           Height="300"
+                                           Margin="10">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="Đo ToF ngắn">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="Đo ToF tiêu chuẩn">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/StandardTOFMeasurement.png"
+                                           Width="600"
+                                           Height="300"
+                                           Margin="10">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="Đo ToF ngắn">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                       Value="Đo ToF tiêu chuẩn"/>
+                                                            <Condition Binding="{Binding IsChecked, ElementName=chkEnPowerBlank}"
+                                                                       Value="False"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                       Value="Đo ToF tiêu chuẩn"/>
+                                                            <Condition Binding="{Binding IsChecked, ElementName=chkEnPowerBlank}"
+                                                                       Value="True"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Image Source="/StandardTOFMeasurementWithPowerBlanking.png"
+                                           Width="600"
+                                           Height="300"
+                                           Margin="10">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                 Value="Đo ToF ngắn">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                       Value="Đo ToF tiêu chuẩn"/>
+                                                            <Condition Binding="{Binding IsChecked, ElementName=chkEnPowerBlank}"
+                                                                       Value="False"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding SelectedItem, ElementName=cmbTimeToF}"
+                                                                       Value="Đo ToF tiêu chuẩn"/>
+                                                            <Condition Binding="{Binding IsChecked, ElementName=chkEnPowerBlank}"
+                                                                       Value="True"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </StackPanel>
+                                <Grid x:Name="mainGrid" 
+                                      Margin="0,5,0,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel x:Name="spCommonMode" 
+                                                Grid.Row="0" 
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,10">
+                                        <TextBlock Text="Thời gian ổn định chung:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtCommonModeTime"
+                                                   Text="128 x T0 ="
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spAutoZeroPeriod" 
+                                                Grid.Row="1" 
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,10">
+                                        <TextBlock Text="Thời gian hiệu chỉnh điểm 0:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="cmbAutoZeroPeriod"
+                                                  materialDesign:HintAssist.Hint="Chọn"
+                                                  Width="60"
+                                                  SelectionChanged="cmbAutoZeroPeriod_SelectionChanged" 
+                                                  Margin="0,4,0,0"/>
+                                        <TextBlock x:Name="txtAutoZeroPeriodTime" Text="x T0 = "
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Margin="5,0,5,0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTransmitTime" 
+                                                Grid.Row="2" 
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,10">
+                                        <TextBlock Text="Thời gian truyền sóng:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtTransmitTime"
+                                                   Text="Số xung truyền x T1 = "
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Margin="0,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spShortToFBlankPeriod" 
+                                                Grid.Row="3" 
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,10">
+                                        <TextBlock Text="Thời gian cấm nhận sóng:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="cmbShortToFBlankPeriod"
+                                                  materialDesign:HintAssist.Hint="Chọn"
+                                                  Width="60"
+                                                  SelectionChanged="cmbShortToFBlankPeriod_SelectionChanged" 
+                                                  Margin="0,4,0,0"/>
+                                        <TextBlock x:Name="txtShortToFBlankPeriodTime" Text="x T0 = "
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Margin="5,0,5,0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spToFTimeoutCtrl" 
+                                                Grid.Row="4" 
+                                                Margin="0,5,0,10">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Thời gian giới hạn nghe sóng nhận:"
+                                                       Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       Width="230"
+                                                       Margin="10,0,0,0"
+                                                       VerticalAlignment="Center"/>
+                                            <ComboBox x:Name="cmbToFTimeoutCtrl"
+                                                      materialDesign:HintAssist.Hint="Chọn"
+                                                      Width="60"
+                                                      SelectionChanged="cmbToFTimeoutCtrl_SelectionChanged" 
+                                                      Margin="0,4,0,0"/>
+                                            <TextBlock x:Name="txtToFTimeoutCtrlTime" Text="x T0 = "
+                                                       Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       Margin="5,0,5,0"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" 
+                                                    Margin="10,10,0,0">
+                                            <TextBlock Text="Vô hiệu hóa giới hạn (chỉ kết thúc khi nhận đủ xung):"
+                                                       Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                       Margin="20,0,0,0"/>
+                                            <ToggleButton x:Name="togToFTimeoutCtrl"
+                                                          Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                          Margin="15,0,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spEnd" 
+                                                Grid.Row="5" 
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,10">
+                                        <TextBlock Text="Thời gian kết thúc:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtEndTime"
+                                                   Text="1 x T1 = "
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Margin="0,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTimingReg" 
+                                                Grid.Row="6"
+                                                Orientation="Horizontal"
+                                                Margin="0,5,0,5">
+                                        <TextBlock x:Name="txtTimingReg" 
+                                                   Text="Thời gian chờ / nghe sóng nhận:"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   Width="230"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Text="("
+                                                    Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                    Margin="0,0,5,0"
+                                                    VerticalAlignment="Center"/>
+                                        <TextBox x:Name="fillTimingReg"
+                                                    Width="50"
+                                                    materialDesign:HintAssist.Hint="30 - 1023"
+                                                    PreviewTextInput="TextBox_PreviewTextInput"
+                                                    LostFocus="fillTimingReg_LostFocus"
+                                                    TextChanged="fillTimingReg_TextChanged" 
+                                                    Margin="0,4,0,0" 
+                                                    HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"/>
+                                        <TextBlock x:Name="txtTimingRegTime" 
+                                                    Text="- 30 ) x 8 x T0 = "
+                                                    Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                    Margin="5,0,5,0"
+                                                    VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </WrapPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem x:Name="Tab3" 
+                     Header="📅 Lịch đo lưu lượng">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Margin="20,10,30,10">
+                    <WrapPanel>
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Thời gian hệ thống"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Thời gian tự động:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="245"
+                                               Margin="10,0,0,0"/>
+                                    <ToggleButton x:Name="togAutoTime"
+                                                  Style="{DynamicResource MaterialDesignSwitchToggleButton}"
+                                                  Margin="15,0,0,0" 
+                                                  Click="togAutoTime_Click"/>
+                                </StackPanel>
+                                <StackPanel x:Name="spSystemTime">
+                                    <TextBlock Text="Ngày:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Margin="10,5,0,10"
+                                               HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ComboBox x:Name="cmbDay" 
+                                                  materialDesign:HintAssist.Hint="Chọn ngày"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0"/>
+                                        <TextBlock Text="/"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   VerticalAlignment="Center" 
+                                                   Margin="10,0,0,5"/>
+                                        <ComboBox x:Name="cmbMonth"
+                                                  materialDesign:HintAssist.Hint="Chọn tháng"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0" 
+                                                  SelectionChanged="cmbMonth_SelectionChanged"/>
+                                        <TextBlock Text="/"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   VerticalAlignment="Center" 
+                                                   Margin="10,0,0,5"/>
+                                        <ComboBox x:Name="cmbYear"
+                                                  materialDesign:HintAssist.Hint="Chọn năm"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0" 
+                                                  SelectionChanged="cmbYear_SelectionChanged"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Giờ:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Margin="10,5,0,10"
+                                               HorizontalAlignment="Left"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ComboBox x:Name="cmbHour"
+                                                  materialDesign:HintAssist.Hint="Chọn giờ"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0"/>
+                                        <TextBlock Text=":"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   VerticalAlignment="Center" 
+                                                   Margin="10,0,0,5"/>
+                                        <ComboBox x:Name="cmbMinute"
+                                                  materialDesign:HintAssist.Hint="Chọn phút"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0"/>
+                                        <TextBlock Text=":"
+                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                                   VerticalAlignment="Center" 
+                                                   Margin="10,0,0,5"/>
+                                        <ComboBox x:Name="cmbSecond"
+                                                  materialDesign:HintAssist.Hint="Chọn giây"
+                                                  Width="80"
+                                                  HorizontalContentAlignment="Center"
+                                                  Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="20,0,40,10">
+                            <TextBlock Text="Chu kỳ"
+                                       Margin="0,0,0,10"
+                                       Style="{DynamicResource MaterialDesignHeadline6TextBlock}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chu kỳ đo:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="170"
+                                               VerticalAlignment="Center" 
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbMeasFlowCycle"
+                                              materialDesign:HintAssist.Hint="Chọn thời gian"
+                                              Width="100"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chu kỳ ghi bản tin:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="170"
+                                               VerticalAlignment="Center" 
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbWriteDataCycle"
+                                              materialDesign:HintAssist.Hint="Chọn thời gian"
+                                              Width="100"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0,5,0,10">
+                                    <TextBlock Text="Chu kỳ gửi dữ liệu:"
+                                               Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                               Width="170"
+                                               VerticalAlignment="Center" 
+                                               Margin="10,0,0,0"/>
+                                    <ComboBox x:Name="cmbSendDataCycle"
+                                              materialDesign:HintAssist.Hint="Chọn thời gian"
+                                              Width="100"
+                                              Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </WrapPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="20">
+            <Button materialDesign:ButtonAssist.CornerRadius="5"
+                    x:Name="btnDefault"
+                    Content="Mặc định"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Margin="10"
+                    Click="btnDefault_Click"/>
+            <Button materialDesign:ButtonAssist.CornerRadius="5"
+                    x:Name="btnUseConfigure"
+                    Content="Dùng cấu hình"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Margin="10"
+                    Click="btnUseConfigure_Click"/>
+            <Button materialDesign:ButtonAssist.CornerRadius="5"
+                    x:Name="btnSaveConfigure"
+                    Content="Lưu cấu hình"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Margin="10"
+                    Click="btnSaveConfigure_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
+
