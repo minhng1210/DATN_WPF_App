@@ -611,7 +611,8 @@ namespace Ultrasonic_watermeter
             WaterChart.AxisY.Clear();
             WaterChart.AxisY.Add(new Axis
             {
-                Title = "Lượng nước (l)"
+                Title = "Lượng nước (l)",
+                MinValue = 0,
             });
         }
 

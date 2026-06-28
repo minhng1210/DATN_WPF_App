@@ -1052,7 +1052,7 @@
             </TabItem>
 
             <TabItem x:Name="Tab3" 
-                     Header="📅 Lịch đo lưu lượng">
+                     Header="📅 Lịch hoạt động">
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               Margin="20,10,30,10">
                     <WrapPanel>
